@@ -55,10 +55,10 @@ http://www.templatemo.com/tm-406-flex
                                     <div class="toggle-menu visible-sm visible-xs"><i class="fa fa-bars"></i></div>
                                     <ul class="menu-first">
                                         <li class="active"><a href="#">Home</a></li>
-                                        <li><a href="#services">By song</a></li>
-                                        <li><a href="#portfolio">By artist/group</a></li>
-                                        <li><a href="#our-team">With link</a></li>
-                                        <li><a href="http://www.tooplate.com" class="external" target="_parent" rel="nofollow">External</a></li> 
+                                        <li><a href="#song">By song</a></li>
+                                        <li><a href="#artist">By artist/group</a></li>
+                                        <li><a href="#link">With link</a></li>
+                                        <li><a href="http://servidortfg.no-ip.org:8080/PDCM" class="external" target="_parent" rel="nofollow">API Examples</a></li> 
                                         <li><a href="#contact">Contact</a></li>                                 
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
@@ -94,6 +94,76 @@ http://www.templatemo.com/tm-406-flex
                 </div> <!-- /.slider -->
             </div> <!-- /.site-slider -->
         </div> <!-- /.site-main -->
+<!--By song -->        
+        <div class="content-section" id="song">
+        		<div class="container">
+        			<div class="row">
+        				<div class="heading-section col-md-12 text-center">
+        					<h2>By song</h2>
+        					<p>Type the name of a song, its author or part of the letter. Try it!</p>
+        					<form class="form-inline" role="form">
+        						<div class="form-group">
+        							<br>
+									<input size="70" type="text" class="form-control" placeholder="Search for a song, type song name or parte of the letter">
+        							<button type="button" class="btn btn-primary">Search</button>
+								</div>    						
+    						</form>
+        				</div>        			
+        			</div>        		
+        		</div>
+        </div>
+<!--By artist -->        
+        <div class="content-section" id="artist">
+        		<div class="container">
+        			<div class="row">
+        				<div class="heading-section col-md-12 text-center">
+        					<h2>By artist/group</h2>
+        					<p>Type the name of the Artist or the Group. Try it!</p>
+        					<form class="form-inline" role="form">
+        						<div class="form-group">
+        							<br>
+									<input size="70" type="text" class="form-control" placeholder="Search songs by artist or group">
+        							<button type="button" class="btn btn-primary">Search</button>
+								</div>    						
+    						</form>
+        				</div>        			
+        			</div>        		
+        		</div>
+        </div>
+<!--With Link -->        
+        <div class="content-section" id="link">
+        		<div class="container">
+        			<div class="row">
+        				<div class="heading-section col-md-12 text-center">
+        					<h2>With link</h2>
+        					<p>Use a link from Youtube, Vimeo or any streaming service Try it!</p>
+        					<form class="form-inline" role="form">
+        						<div class="form-group">
+        							<br>
+									<input size="70" type="text" class="form-control" placeholder="Link">
+        							<button type="button" class="btn btn-primary">Search</button>
+									<div class="row">
+									  	<div class="col-md-4 col-sm-8">
+									  		<label>Type</label><br>
+										  	<label><input type="checkbox" value="" >Audio</label><br>
+										  	<label><input type="checkbox" value="" >Video</label><br>
+									  	</div>
+									  	<div class="col-md-4 col-sm-8">
+									  		<label>Quality</label><br>
+										  	<label><input type="checkbox" value="" >Option 1</label><br>
+										  	<label><input type="checkbox" value="" >Option 2</label><br>
+										  	<label><input type="checkbox" value="" disabled>Option 3</label>
+									  	</div>
+									  	<div class="col-md-4 col-sm-8">
+									  		<br>
+									  		<button type="button" class="btn btn-primary">Download</button>
+									  	</div>
+								</div>    						
+    						</form>
+        				</div>        			
+        			</div>        		
+        		</div>
+        </div>
 
 
         <div class="content-section" id="services">
