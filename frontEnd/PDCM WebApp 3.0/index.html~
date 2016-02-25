@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
 	</head>
 	<body ng-controller="PDCMController">
 
@@ -77,8 +78,7 @@
 
 				<!-- Intro -->
 					<section id="top" class="one dark cover">
-						<div class="container">
-
+						<div class="container">
 							<header>
 								<h2 class="alt">{{texto.tituloCompleto}}</h2>
 								<p>{{texto.eslogan}}</p>
@@ -102,13 +102,34 @@
 
 							<p>{{texto.pCancion}}</p>
 							
-							<form  action="#">
+							<form>
 								<div class="row">
-									<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="{{texto.sCancion}}" /></div>
+									<div class="6u 12u$(mobile)"><input type="text" name="busqueda" ng-model="busqueda" placeholder="{{texto.sCancion}}" /></div>
 									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" ng-click="Search(busqueda)"/></div>
 								</div>
 							</form>
-
+							<br>
+							<i class="fa fa-spinner fa-pulse fa-3x" ng-show="showLoadingSong"></i>
+							
+							<div  ng-show="showTableSong">
+								<table class="table table-striped">
+									<tr>
+										<th>Name</th>
+										<th>Duration</th>     
+										<th>{{texto.origen}}</th>
+									</tr>
+									<tr ng-repeat="song in songs" >
+										<td ng-click="GetLinkSong(song.urlYoutube,song.nombre)">{{song.nombre}}</td>
+										<td>{{song.duracion}}</td>
+										<td>{{song.urlYoutube}}</td>
+									</tr>
+								</table>
+							</div>
+							
+							<div ng-show="downloadLinkSong">
+								<a href="{{urlSpecial}}" download="cancion.mp3">Download {{song.nombre}}</a>
+							</div>
+							
 						</div>
 					</section>
 					
@@ -220,6 +241,6 @@
 			<script src="assets/js/main.js"></script>
 			
 			<script src="assets/js/app.js" type="text/javascript"></script>
-
+
 	</body>
 </html>

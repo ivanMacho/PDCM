@@ -1,13 +1,24 @@
 var app = angular.module('PDCM', []);
 
-app.controller('PDCMController', function($scope) {
+app.controller('PDCMController', function($scope, $http) {
+
+	$scope.showLoadingSong=false;
+	$scope.showLoadingArtist=false;
+	$scope.showLoadingLink=false;
+	
+	
+	$scope.showTableSong=false;
+	$scope.showTableArtist=false;
+	
+	$scope.downloadLinkSong=false;
+	
 	
 	$scope.texto = {
 		idioma: "Spanish",
 		titulo: "PDCM",
-		tituloCompleto: "Plataforma de Descarga de Contenido Multimédia",
-		eslogan: "Descargar contenido multimédia nunca fue tan fácil",
-		pruebalo: "Pruebalo!",
+		tituloCompleto: "Plataforma de Descarga de Contenido Multimedia",
+		eslogan: "Descargar contenido multimedia nunca fue tan fácil",
+		pruebalo: "Pruébalo!",
 		cancion: "Por canción",
 		pCancion: "Escribe la canción o parte de la letra.",
 		sCancion: "Busca una canción",
@@ -23,20 +34,19 @@ app.controller('PDCMController', function($scope) {
 		contacto: "Contacto",
 		pContacto: "Texto de contacto",
 		pruebaApi: "Prueba la API!",
-		repoGitHub: "Repositorio GitHub"
+		repoGitHub: "Repositorio GitHub",
+		origen: "Origen"
 		
       }
-		
-
 	
 	$scope.CambiarSpanish = function(){
 	
 	$scope.texto = {
 		idioma: "Spanish",
 		titulo: "PDCM",
-		tituloCompleto: "Plataforma de Descarga de Contenido Multimédia",
-		eslogan: "Descargar contenido multimédia nunca fue tan fácil",
-		pruebalo: "Pruebalo!",
+		tituloCompleto: "Plataforma de Descarga de Contenido Multimedia",
+		eslogan: "Descargar contenido multimedia nunca fue tan fácil",
+		pruebalo: "Pruébalo!",
 		cancion: "Por canción",
 		pCancion: "Escribe la canción o parte de la letra.",
 		sCancion: "Busca una canción",
@@ -51,8 +61,9 @@ app.controller('PDCMController', function($scope) {
 		pAbout: "Descripción PDCM",
 		contacto: "Contacto",
 		pContacto: "Texto de contacto",
-		pruebaApi: "Try the API!",
-		repoGitHub: "GitHub repository"
+		pruebaApi: "Prueba la API!",
+		repoGitHub: "Repositorio GitHub",
+		origen: "Origen"
 		
       }
 	
@@ -63,7 +74,7 @@ app.controller('PDCMController', function($scope) {
 	$scope.texto = {
 		idioma: "English",
 		titulo: "PDCM",
-		tituloCompleto: "Plataforma de Descarga de Contenido Multimédia",
+		tituloCompleto: "Plataforma de Descarga de Contenido Multimedia",
 		eslogan: "Downloading multimedia content has never been easier",
 		pruebalo: "Try it!",
 		cancion: "By Song",
@@ -80,9 +91,45 @@ app.controller('PDCMController', function($scope) {
 		pAbout: "Description of PDCM",
 		contacto: "Contact",
 		pContacto: "Text of contact",
+		pruebaApi: "Try the API!",
+		repoGitHub: "GitHub repository",
+		origen: "Source"
 		
       }
 	
 	};
+	
+	$scope.Search = function(busqueda){
+		$scope.showTableSong=false;
+		$scope.showLoadingSong=true;
+		$http({
+  		method: 'GET',
+  		url: 'http://www.pdcm.es:8080/PDCM/rest/searchYoutube',
+  		params: { busqueda: busqueda }
+	}).then(function successCallback(response) 
+		{
+			$scope.showLoadingSong=false;
+			$scope.showTableSong=true;
+			$scope.songs = response.data;
+		});	
+	};
+	
+	$scope.GetLinkSong = function(urlYoutube,song){
+		$scope.showTableSong=false;
+		$scope.showLoadingSong=true;
+		$http({
+  		method: 'GET',
+  		url: 'http://www.pdcm.es:8080/PDCM/rest/youtubedl',
+  		params: { url: urlYoutube }
+	}).then(function successCallback(response) 
+		{
+			$scope.urlSpecial = response.data.urlspecial;
+			$scope.downloadCancion=song;
+			$scope.showLoadingSong=false;
+			$scope.downloadLinkSong=true;
+
+		});	
+	};
+	
 	
 });
