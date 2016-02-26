@@ -11,6 +11,7 @@ app.controller('PDCMController', function($scope, $http) {
 	$scope.showTableArtist=false;
 	
 	$scope.downloadLinkSong=false;
+	$scope.downloadLinkArtist=false;
 	
 	
 	$scope.texto = {
@@ -99,9 +100,10 @@ app.controller('PDCMController', function($scope, $http) {
 	
 	};
 	
-	$scope.Search = function(busqueda){
+	$scope.SearchSong = function(busqueda){
 		$scope.showTableSong=false;
 		$scope.showLoadingSong=true;
+		$scope.downloadLinkSong=false;
 		$http({
   		method: 'GET',
   		url: 'http://www.pdcm.es:8080/PDCM/rest/searchYoutube',
@@ -116,6 +118,7 @@ app.controller('PDCMController', function($scope, $http) {
 	
 	$scope.GetLinkSong = function(urlYoutube,song){
 		$scope.showTableSong=false;
+		$scope.downloadLinkSong=false;
 		$scope.showLoadingSong=true;
 		$http({
   		method: 'GET',
@@ -123,7 +126,7 @@ app.controller('PDCMController', function($scope, $http) {
   		params: { url: urlYoutube }
 	}).then(function successCallback(response) 
 		{
-			$scope.urlSpecial = response.data.urlspecial;
+			$scope.urlSpecialSong = response.data.urlspecial;
 			$scope.downloadCancion=song;
 			$scope.showLoadingSong=false;
 			$scope.downloadLinkSong=true;
@@ -131,5 +134,38 @@ app.controller('PDCMController', function($scope, $http) {
 		});	
 	};
 	
+	$scope.SearchArtist = function(busqueda){
+		$scope.showTableArtist=false;
+		$scope.downloadLinkArtist=false;
+		$scope.showLoadingArtist=true;
+		$http({
+  		method: 'GET',
+  		url: 'http://www.pdcm.es:8080/PDCM/rest/searchYoutubeArtist',
+  		params: { busqueda: busqueda }
+	}).then(function successCallback(response) 
+		{
+			$scope.showLoadingArtist=false;
+			$scope.showTableArtist=true;
+			$scope.songsArtist = response.data;
+		});	
+	};
+	
+	$scope.GetLinkArtist = function(urlYoutube,song){
+		$scope.showTableArtist=false;
+		$scope.downloadLinkArtist=false;
+		$scope.showLoadingArtist=true;
+		$http({
+  		method: 'GET',
+  		url: 'http://www.pdcm.es:8080/PDCM/rest/youtubedl',
+  		params: { url: urlYoutube }
+	}).then(function successCallback(response) 
+		{
+			$scope.urlSpecialArtist = response.data.urlspecial;
+			$scope.downloadCancionArtist=song;
+			$scope.showLoadingArtist=false;
+			$scope.downloadLinkArtist=true;
+
+		});	
+	};
 	
 });

@@ -105,7 +105,7 @@
 							<form>
 								<div class="row">
 									<div class="6u 12u$(mobile)"><input type="text" name="busqueda" ng-model="busqueda" placeholder="{{texto.sCancion}}" /></div>
-									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" ng-click="Search(busqueda)"/></div>
+									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" ng-click="SearchSong(busqueda)"/></div>
 								</div>
 							</form>
 							<br>
@@ -127,7 +127,7 @@
 							</div>
 							
 							<div ng-show="downloadLinkSong">
-								<a href="{{urlSpecial}}" download="cancion.mp3">Download {{song.nombre}}</a>
+								<a href="{{urlSpecialSong}}" download="cancion.mp3">Download {{song.nombre}}</a>
 							</div>
 							
 						</div>
@@ -144,12 +144,33 @@
 
 							<p>{{texto.pArtista}}</p>
 							
-							<form  action="#">
+							<form>
 								<div class="row">
-									<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="{{texto.sArtista}}" /></div>
-									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" /></div>
+									<div class="6u 12u$(mobile)"><input type="text" name="busqueda" ng-model="busqueda" placeholder="{{texto.sArtista}}" /></div>
+									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" ng-click="SearchArtist(busqueda)"/></div>
 								</div>
 							</form>
+							<br>
+							<i class="fa fa-spinner fa-pulse fa-3x" ng-show="showLoadingArtist"></i>
+							
+							<div  ng-show="showTableArtist">
+								<table class="table table-striped">
+									<tr>
+										<th>Name</th>
+										<th>Duration</th>     
+										<th>{{texto.origen}}</th>
+									</tr>
+									<tr ng-repeat="songArtist in songsArtist" >
+										<td ng-click="GetLinkArtist(songArtist.urlYoutube,songArtist.nombre)">{{songArtist.nombre}}</td>
+										<td>{{songArtist.duracion}}</td>
+										<td>{{songArtist.urlYoutube}}</td>
+									</tr>
+								</table>
+							</div>
+							
+							<div ng-show="downloadLinkArtist">
+								<a href="{{urlSpecialArtist}}" download="cancion.mp3">Download {{songArtist.nombre}}</a>
+							</div>
 
 						</div>
 					</section>
