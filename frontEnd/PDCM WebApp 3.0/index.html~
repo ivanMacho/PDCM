@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html ng-app="PDCM">
+<html ng-app="PDCM" ng-init="CambiarSpanish()">
 	<head>
 		<title>PDCM</title>
 		<meta charset="utf-8" />
@@ -12,6 +12,7 @@
 
 	</head>
 	<body ng-controller="PDCMController">
+	
 
 		<!-- Header -->
 			<div id="header">
@@ -75,6 +76,7 @@
 
 		<!-- Main -->
 			<div id="main">
+			
 
 				<!-- Intro -->
 					<section id="top" class="one dark cover">
@@ -97,7 +99,7 @@
 						<div class="container">
 
 							<header>
-								<h2>{{texto.cancion}}</h2>
+								<h2>{{texto.cancion}}</h2>  			{{countryCode}}
 							</header>
 
 							<p>{{texto.pCancion}}</p>

@@ -13,32 +13,17 @@ app.controller('PDCMController', function($scope, $http) {
 	$scope.downloadLinkSong=false;
 	$scope.downloadLinkArtist=false;
 	
-	
-	$scope.texto = {
-		idioma: "Spanish",
-		titulo: "PDCM",
-		tituloCompleto: "Plataforma de Descarga de Contenido Multimedia",
-		eslogan: "Descargar contenido multimedia nunca fue tan fácil",
-		pruebalo: "Pruébalo!",
-		cancion: "Por canción",
-		pCancion: "Escribe la canción o parte de la letra.",
-		sCancion: "Busca una canción",
-		artista: "Por artista/grupo",
-		pArtista: "Escribe el nombre de una artista o grupo",
-		sArtista: "Busca canciones de un grupo o artista",
-		buscar: "Buscar",
-		link: "Usa un link",
-		pLink: "Pega un link de Youtube, Vimeo u otro servicio de streaming",
-		sLink: "Link",
-		about: "Sobre PDCM",
-		pAbout: "Descripción PDCM",
-		contacto: "Contacto",
-		pContacto: "Texto de contacto",
-		pruebaApi: "Prueba la API!",
-		repoGitHub: "Repositorio GitHub",
-		origen: "Origen"
-		
-      }
+	$scope.Init = function () {
+		$scope.GetCountryCode();
+		$scope.$watch('countryCode', function () {
+      	if ($scope.countryCode == "ES") {
+				$scope.CambiarSpanish();
+      	} else {
+				$scope.CambiarEnglish();		
+      	}
+    	});
+ };
+    
 	
 	$scope.CambiarSpanish = function(){
 	
@@ -58,7 +43,7 @@ app.controller('PDCMController', function($scope, $http) {
 		link: "Usa un link",
 		pLink: "Pega un link de Youtube, Vimeo u otro servicio de streaming",
 		sLink: "Link",
-		about: "Sobre PDCM",
+		about: "Acerca de PDCM",
 		pAbout: "Descripción PDCM",
 		contacto: "Contacto",
 		pContacto: "Texto de contacto",
@@ -106,7 +91,7 @@ app.controller('PDCMController', function($scope, $http) {
 		$scope.downloadLinkSong=false;
 		$http({
   		method: 'GET',
-  		url: 'http://www.pdcm.es:8080/PDCM/rest/searchYoutube',
+  		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/searchYoutube',
   		params: { busqueda: busqueda }
 	}).then(function successCallback(response) 
 		{
@@ -122,7 +107,7 @@ app.controller('PDCMController', function($scope, $http) {
 		$scope.showLoadingSong=true;
 		$http({
   		method: 'GET',
-  		url: 'http://www.pdcm.es:8080/PDCM/rest/youtubedl',
+  		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/youtubedl',
   		params: { url: urlYoutube }
 	}).then(function successCallback(response) 
 		{
@@ -140,7 +125,7 @@ app.controller('PDCMController', function($scope, $http) {
 		$scope.showLoadingArtist=true;
 		$http({
   		method: 'GET',
-  		url: 'http://www.pdcm.es:8080/PDCM/rest/searchYoutubeArtist',
+  		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/searchYoutubeArtist',
   		params: { busqueda: busqueda }
 	}).then(function successCallback(response) 
 		{
@@ -156,7 +141,7 @@ app.controller('PDCMController', function($scope, $http) {
 		$scope.showLoadingArtist=true;
 		$http({
   		method: 'GET',
-  		url: 'http://www.pdcm.es:8080/PDCM/rest/youtubedl',
+  		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/youtubedl',
   		params: { url: urlYoutube }
 	}).then(function successCallback(response) 
 		{
@@ -167,5 +152,32 @@ app.controller('PDCMController', function($scope, $http) {
 
 		});	
 	};
+	
+	$scope.GetLink = function(urlYoutube,song){
+	
+		$http({
+  		method: 'GET',
+  		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/youtubedl',
+  		params: { url: urlYoutube }
+	}).then(function successCallback(response) 
+		{
+			$scope.urlSpecial = response.data.urlspecial;
+
+		});	
+	};
+	
+	$scope.GetCountryCode = function(){
+		$http({
+  		method: 'GET',
+  		url: 'http://ip-api.com/json',
+	}).then(function successCallback(response) 
+		{
+			$scope.countryCode = response.data.countryCode;
+
+		});	
+	};
+	
+	window.onload = $scope.Init();
+
 	
 });
