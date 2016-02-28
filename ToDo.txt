@@ -13,4 +13,5 @@ WebApp:
 Problema con cdns google.
 	Implementar proxy(Squid) en servidor pdcm.es para hacer las descargas del archivo / usar proxy de terecro.
 
+Problema con metodo de busqueda en Youtube. El lugar donde se indica la duracion de los videos es diferente si se accede a youtube desde España o desde otro pais. 
 Compilar para plataformas moviles con Apache Cordova
