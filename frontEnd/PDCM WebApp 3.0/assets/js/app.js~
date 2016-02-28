@@ -91,7 +91,7 @@ app.controller('PDCMController', function($scope, $http) {
 		$scope.downloadLinkSong=false;
 		$http({
   		method: 'GET',
-  		url: 'http://www.pdcm.es:8080/PDCM/rest/searchYoutube',
+  		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/searchYoutube',
   		params: { busqueda: busqueda }
 	}).then(function successCallback(response) 
 		{
@@ -125,7 +125,7 @@ app.controller('PDCMController', function($scope, $http) {
 		$scope.showLoadingArtist=true;
 		$http({
   		method: 'GET',
-  		url: 'http://www.pdcm.es:8080/PDCM/rest/searchYoutubeArtist',
+  		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/searchYoutubeArtist',
   		params: { busqueda: busqueda }
 	}).then(function successCallback(response) 
 		{
