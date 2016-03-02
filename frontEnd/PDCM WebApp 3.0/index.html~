@@ -99,7 +99,7 @@
 						<div class="container">
 
 							<header>
-								<h2>{{texto.cancion}}</h2>  			{{countryCode}}
+								<h2>{{texto.cancion}}</h2>
 							</header>
 
 							<p>{{texto.pCancion}}</p>
@@ -188,12 +188,18 @@
 
 							<p>{{texto.pLink}}</p>
 							
-							<form  action="#">
+							<form>
 								<div class="row">
-									<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="{{texto.sLink}}" /></div>
-									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" /></div>
+									<div class="6u 12u$(mobile)"><input type="text" name="urlYoutube" ng-model="busqueda" placeholder="{{texto.sLink}}" /></div>
+									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" ng-click="GetLink(urlYoutube)"/></div>
 								</div>
 							</form>
+							<br>
+							<i class="fa fa-spinner fa-pulse fa-3x" ng-show="showLoadingLink"></i>
+							
+							<div ng-show="downloadLinkLink">
+								<a href="{{urlSpecialLink}}" download="cancion.mp3">Download</a>
+							</div>
 
 						</div>
 					</section>

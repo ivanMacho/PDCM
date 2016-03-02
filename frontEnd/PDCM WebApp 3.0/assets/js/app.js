@@ -153,7 +153,8 @@ app.controller('PDCMController', function($scope, $http) {
 		});	
 	};
 	
-	$scope.GetLink = function(urlYoutube,song){
+	$scope.GetLink = function(urlYoutube){
+		$scope.showLoadingLink=true;
 	
 		$http({
   		method: 'GET',
@@ -161,7 +162,9 @@ app.controller('PDCMController', function($scope, $http) {
   		params: { url: urlYoutube }
 	}).then(function successCallback(response) 
 		{
-			$scope.urlSpecial = response.data.urlspecial;
+			$scope.urlSpecialLink = response.data.urlspecial;
+			$scope.showLoadingLink=false;
+			$scope.downloadLinkLink=true;
 
 		});	
 	};
