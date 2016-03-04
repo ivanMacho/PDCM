@@ -47,8 +47,7 @@
 								<li><a href="#link" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-link">{{texto.link}}</span></a></li>
 								<li><a href="#about" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">{{texto.about}}</span></a></li>
 								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">{{texto.contacto}}</span></a></li>
-								<li><a href="http://www.pdcm.es:8080/PDCM" target="_blank" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-share">{{texto.pruebaApi}}</span></a></li>
-								<li><a href="https://github.com/ivanMacho/PDCM" target="_blank" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-github">{{texto.repoGitHub}}</span></a></li>
+								
 							</ul>
 							<!-- Language -->
 							<ul>
@@ -94,6 +93,8 @@
 					</section>
 
 				<!-- song -->
+				
+
 
 					<section id="song" class="three">
 						<div class="container">
@@ -103,7 +104,7 @@
 							</header>
 
 							<p>{{texto.pCancion}}</p>
-							
+
 							<form>
 								<div class="row">
 									<div class="6u 12u$(mobile)"><input type="text" name="busqueda" ng-model="busqueda" placeholder="{{texto.sCancion}}" /></div>
@@ -190,7 +191,7 @@
 							
 							<form>
 								<div class="row">
-									<div class="6u 12u$(mobile)"><input type="text" name="urlYoutube" ng-model="busqueda" placeholder="{{texto.sLink}}" /></div>
+									<div class="6u 12u$(mobile)"><input type="text" name="urlYoutube" ng-model="urlYoutube" placeholder="{{texto.sLink}}" /></div>
 									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" ng-click="GetLink(urlYoutube)"/></div>
 								</div>
 							</form>
@@ -204,17 +205,23 @@
 						</div>
 					</section>
 
-				<!-- About Me -->
+				<!-- About -->
 					<section id="about" class="three">
 						<div class="container">
 
 							<header>
 								<h2>{{texto.about}}</h2>
 							</header>
+							
+							<h3></h3>
 
 							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
 
 							<p>{{texto.pAbout}}</p>
+							<p>{{texto.pAbout2}} <a href="https://github.com/ivanMacho/PDCM" target="_blank"> <i class="fa fa-github"></i> {{texto.repoGitHub}} </a></p>
+
+							<p>{{texto.pAbout3}} <a href="http://www.pdcm.es:8080/PDCM" target="_blank"> <i class="fa fa-share"></i> {{texto.pruebaApi}} </a></p>
+							
 
 						</div>
 					</section>

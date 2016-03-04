@@ -44,7 +44,9 @@ app.controller('PDCMController', function($scope, $http) {
 		pLink: "Pega un link de Youtube, Vimeo u otro servicio de streaming",
 		sLink: "Link",
 		about: "Acerca de PDCM",
-		pAbout: "Descripción PDCM",
+		pAbout: "PDCM es un proyecto de codigo abierto, que permite la descarga de contenido multimedia, alojado en servidores de streaming. La plataforma consta de un back-end, que ofrece los servicios mediante una API RESTful y una parte front-end que consume los servicios.",
+		pAbout2: "El codigo fuente esta accesible en Github: ",
+		pAbout3: "Ademas se ofrece una pagina con los servicios REST disponibles: ",
 		contacto: "Contacto",
 		pContacto: "Texto de contacto",
 		pruebaApi: "Prueba la API!",
@@ -182,5 +184,5 @@ app.controller('PDCMController', function($scope, $http) {
 	
 	window.onload = $scope.Init();
 
-	
+
 });
