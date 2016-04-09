@@ -5,28 +5,28 @@ app.controller('PDCMController', function($scope, $http) {
 	$scope.showLoadingSong=false;
 	$scope.showLoadingArtist=false;
 	$scope.showLoadingLink=false;
-	
-	
+
+
 	$scope.showTableSong=false;
 	$scope.showTableArtist=false;
-	
+
 	$scope.downloadLinkSong=false;
 	$scope.downloadLinkArtist=false;
-	
+
 	$scope.Init = function () {
 		$scope.GetCountryCode();
 		$scope.$watch('countryCode', function () {
       	if ($scope.countryCode == "ES") {
 				$scope.CambiarSpanish();
       	} else {
-				$scope.CambiarEnglish();		
+				$scope.CambiarEnglish();
       	}
     	});
  };
-    
-	
+
+
 	$scope.CambiarSpanish = function(){
-	
+
 	$scope.texto = {
 		idioma: "Spanish",
 		titulo: "PDCM",
@@ -52,13 +52,13 @@ app.controller('PDCMController', function($scope, $http) {
 		pruebaApi: "Prueba la API!",
 		repoGitHub: "Repositorio GitHub",
 		origen: "Origen"
-		
+
       }
-	
+
 	};
-	
+
 	$scope.CambiarEnglish = function(){
-	
+
 	$scope.texto = {
 		idioma: "English",
 		titulo: "PDCM",
@@ -82,11 +82,11 @@ app.controller('PDCMController', function($scope, $http) {
 		pruebaApi: "Try the API!",
 		repoGitHub: "GitHub repository",
 		origen: "Source"
-		
+
       }
-	
+
 	};
-	
+
 	$scope.SearchSong = function(busqueda){
 		$scope.showTableSong=false;
 		$scope.showLoadingSong=true;
@@ -95,14 +95,14 @@ app.controller('PDCMController', function($scope, $http) {
   		method: 'GET',
   		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/searchYoutube',
   		params: { busqueda: busqueda }
-	}).then(function successCallback(response) 
+	}).then(function successCallback(response)
 		{
 			$scope.showLoadingSong=false;
 			$scope.showTableSong=true;
 			$scope.songs = response.data;
-		});	
+		});
 	};
-	
+
 	$scope.GetLinkSong = function(urlYoutube,song){
 		$scope.showTableSong=false;
 		$scope.downloadLinkSong=false;
@@ -111,16 +111,16 @@ app.controller('PDCMController', function($scope, $http) {
   		method: 'GET',
   		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/youtubedl',
   		params: { url: urlYoutube }
-	}).then(function successCallback(response) 
+	}).then(function successCallback(response)
 		{
 			$scope.urlSpecialSong = response.data.urlspecial;
 			$scope.downloadCancion=song;
 			$scope.showLoadingSong=false;
 			$scope.downloadLinkSong=true;
 
-		});	
+		});
 	};
-	
+
 	$scope.SearchArtist = function(busqueda){
 		$scope.showTableArtist=false;
 		$scope.downloadLinkArtist=false;
@@ -129,14 +129,14 @@ app.controller('PDCMController', function($scope, $http) {
   		method: 'GET',
   		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/searchYoutubeArtist',
   		params: { busqueda: busqueda }
-	}).then(function successCallback(response) 
+	}).then(function successCallback(response)
 		{
 			$scope.showLoadingArtist=false;
 			$scope.showTableArtist=true;
 			$scope.songsArtist = response.data;
-		});	
+		});
 	};
-	
+
 	$scope.GetLinkArtist = function(urlYoutube,song){
 		$scope.showTableArtist=false;
 		$scope.downloadLinkArtist=false;
@@ -145,43 +145,43 @@ app.controller('PDCMController', function($scope, $http) {
   		method: 'GET',
   		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/youtubedl',
   		params: { url: urlYoutube }
-	}).then(function successCallback(response) 
+	}).then(function successCallback(response)
 		{
 			$scope.urlSpecialArtist = response.data.urlspecial;
 			$scope.downloadCancionArtist=song;
 			$scope.showLoadingArtist=false;
 			$scope.downloadLinkArtist=true;
 
-		});	
+		});
 	};
-	
+
 	$scope.GetLink = function(urlYoutube){
 		$scope.showLoadingLink=true;
-	
+
 		$http({
   		method: 'GET',
   		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/youtubedl',
   		params: { url: urlYoutube }
-	}).then(function successCallback(response) 
+	}).then(function successCallback(response)
 		{
 			$scope.urlSpecialLink = response.data.urlspecial;
 			$scope.showLoadingLink=false;
 			$scope.downloadLinkLink=true;
 
-		});	
+		});
 	};
-	
+
 	$scope.GetCountryCode = function(){
 		$http({
   		method: 'GET',
   		url: 'http://ip-api.com/json',
-	}).then(function successCallback(response) 
+	}).then(function successCallback(response)
 		{
 			$scope.countryCode = response.data.countryCode;
 
-		});	
+		});
 	};
-	
+
 	window.onload = $scope.Init();
 
 
