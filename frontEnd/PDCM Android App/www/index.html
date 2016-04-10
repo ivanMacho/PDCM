@@ -151,7 +151,10 @@
 							</div>
 
 							<div ng-show="downloadLinkSong">
-								<a href="{{urlSpecialSong}}" download="cancion.mp3">Download {{song.nombre}}</a>
+                <br>
+							  <button type="button" class="btn btn-success" ng-click="downloadFile(urlSpecialSong)" >{{texto.descargar}}</button>
+							  <br>
+                <progress value="{{downloadProgress}}" max="100" ng-show="showProgress"></progress>
 							</div>
 
 						</div>
@@ -193,7 +196,10 @@
 							</div>
 
 							<div ng-show="downloadLinkArtist">
-								<a href="{{urlSpecialArtist}}" download="cancion.mp3">Download {{songArtist.nombre}}</a>
+                <br>
+                <button type="button" class="btn btn-success" ng-click="downloadFile(urlSpecialArtist)" >{{texto.descargar}}</button>
+                <br>
+                <progress value="{{downloadProgress}}" max="100" ng-show="showProgress"></progress>
 							</div>
 
 						</div>
@@ -292,6 +298,7 @@
         <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="lib/jquery/jquery.scrolly.min.js"></script>
         <script type="text/javascript" src="lib/jquery/jquery.scrollzer.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <script type="text/javascript" src="js/skel.min.js"></script>
         <script type="text/javascript" src="js/util.js"></script>

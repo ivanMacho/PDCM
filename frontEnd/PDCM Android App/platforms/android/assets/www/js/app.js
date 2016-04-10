@@ -1,6 +1,6 @@
 var app = angular.module('PDCM', ['ngCordova']);
 
-app.controller('PDCMController', function($scope, $http) {
+app.controller('PDCMController', function($scope, $http, $timeout, $cordovaFileTransfer) {
 
 	$scope.showLoadingSong=false;
 	$scope.showLoadingArtist=false;
@@ -23,6 +23,7 @@ app.controller('PDCMController', function($scope, $http) {
       	}
     	});
  };
+
 
 
 	$scope.CambiarSpanish = function(){
@@ -51,7 +52,8 @@ app.controller('PDCMController', function($scope, $http) {
 		pContacto: "Texto de contacto",
 		pruebaApi: "Prueba la API!",
 		repoGitHub: "Repositorio GitHub",
-		origen: "Origen"
+		origen: "Origen",
+		descargar:"Descargar"
 
       }
 
@@ -81,7 +83,8 @@ app.controller('PDCMController', function($scope, $http) {
 		pContacto: "Text of contact",
 		pruebaApi: "Try the API!",
 		repoGitHub: "GitHub repository",
-		origen: "Source"
+		origen: "Source",
+		descargar:"Download"
 
       }
 
@@ -104,6 +107,7 @@ app.controller('PDCMController', function($scope, $http) {
 	};
 
 	$scope.GetLinkSong = function(urlYoutube,song){
+		$scope.nameSong=song;
 		$scope.showTableSong=false;
 		$scope.downloadLinkSong=false;
 		$scope.showLoadingSong=true;
@@ -138,6 +142,7 @@ app.controller('PDCMController', function($scope, $http) {
 	};
 
 	$scope.GetLinkArtist = function(urlYoutube,song){
+		$scope.nameSong=song;
 		$scope.showTableArtist=false;
 		$scope.downloadLinkArtist=false;
 		$scope.showLoadingArtist=true;
@@ -170,6 +175,38 @@ app.controller('PDCMController', function($scope, $http) {
 
 		});
 	};
+
+	$scope.downloadFile = function(urlSpecial) {
+	$scope.showProgress=true;
+	var url = decodeURIComponent(urlSpecial);
+  var filename = $scope.nameSong +".mp3";
+  alert("Downloading " +filename);
+  var targetPath = cordova.file.externalRootDirectory + "PDCM/" + filename;
+  var trustHosts = true
+  var options = {};
+  //alert(targetPath);
+  $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+  	.then(function(result) {
+    // Success!
+      alert("Download complete. Go to PDCM");
+      $scope.showProgress=false;
+      //alert(JSON.stringify(result));
+      }, function(error) {
+        // Error
+        alert(JSON.stringify(error));
+      }, function (progress) {
+        $timeout(function () {
+          $scope.downloadProgress = (progress.loaded / progress.total) * 100;
+        })
+      });
+ }
+
+
+
+//I'm only called when the file exists or has been downloaded.
+function appStart() {
+	$status.innerHTML = "App ready!";
+}
 
 	$scope.GetCountryCode = function(){
 		$http({
