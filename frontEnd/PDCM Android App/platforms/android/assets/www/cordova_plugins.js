@@ -169,6 +169,13 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
+        "id": "cordova-plugin-file-opener2.FileOpener2",
+        "clobbers": [
+            "cordova.plugins.fileOpener2"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -176,7 +183,8 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-file": "4.1.1",
-    "cordova-plugin-file-transfer": "1.5.0"
+    "cordova-plugin-file-transfer": "1.5.0",
+    "cordova-plugin-file-opener2": "2.0.2"
 };
 // BOTTOM OF METADATA
 });

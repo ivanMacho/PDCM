@@ -1,6 +1,6 @@
 var app = angular.module('PDCM', ['ngCordova']);
 
-app.controller('PDCMController', function($scope, $http, $timeout, $cordovaFileTransfer) {
+app.controller('PDCMController', function($scope, $http, $timeout, $cordovaFileTransfer, $cordovaFileOpener2) {
 
 	$scope.showLoadingSong=false;
 	$scope.showLoadingArtist=false;
@@ -188,8 +188,9 @@ app.controller('PDCMController', function($scope, $http, $timeout, $cordovaFileT
   $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
   	.then(function(result) {
     // Success!
-      alert("Download complete. Go to PDCM");
+      alert("Download complete in PDCM folder, now, listen!");
       $scope.showProgress=false;
+			$scope.openLastFile(targetPath);
       //alert(JSON.stringify(result));
       }, function(error) {
         // Error
@@ -199,6 +200,18 @@ app.controller('PDCMController', function($scope, $http, $timeout, $cordovaFileT
           $scope.downloadProgress = (progress.loaded / progress.total) * 100;
         })
       });
+ }
+
+ $scope.openLastFile = function(path){
+	 $cordovaFileOpener2.open(
+	 path,
+	 'audio/mp4'
+ ).then(function() {
+		 // Success!
+ }, function(err) {
+		 // An error occurred. Show a message to the user
+		 alert("Error al reproducir el archivo!!")
+ });
  }
 
 

@@ -15,6 +15,9 @@
         },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "org.tfg"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "org.tfg"
         }
     },
     "dependent_plugins": {}
