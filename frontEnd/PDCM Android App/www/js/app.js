@@ -160,9 +160,10 @@ app.controller('PDCMController', function($scope, $http, $timeout, $cordovaFileT
 		});
 	};
 
-	$scope.GetLink = function(urlYoutube){
-		$scope.showLoadingLink=true;
 
+	$scope.DownloadLink = function(urlYoutube){
+		$scope.downloadLink=false;
+		$scope.showLoadingLink=true;
 		$http({
   		method: 'GET',
   		url: 'http://servidortfg.no-ip.org:8080/PDCM/rest/youtubedl',
@@ -170,8 +171,9 @@ app.controller('PDCMController', function($scope, $http, $timeout, $cordovaFileT
 	}).then(function successCallback(response)
 		{
 			$scope.urlSpecialLink = response.data.urlspecial;
+			$scope.downloadFile($scope.urlSpecialLink);
 			$scope.showLoadingLink=false;
-			$scope.downloadLinkLink=true;
+			$scope.downloadLink=true;
 
 		});
 	};

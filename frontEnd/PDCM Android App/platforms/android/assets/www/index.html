@@ -219,14 +219,14 @@
 							<form>
 								<div class="row">
 									<div class="6u 12u$(mobile)"><input type="text" name="urlYoutube" ng-model="urlYoutube" placeholder="{{texto.sLink}}" /></div>
-									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.buscar}}" ng-click="GetLink(urlYoutube)"/></div>
+									<div class="6u$ 12u$(mobile)"><input type="submit" value="{{texto.descargar}}" ng-click="DownloadLink(urlYoutube)"/></div>
 								</div>
 							</form>
 							<br>
 							<i class="fa fa-spinner fa-pulse fa-3x" ng-show="showLoadingLink"></i>
-
-							<div ng-show="downloadLinkLink">
-								<a href="{{urlSpecialLink}}" download="cancion.mp3">Download</a>
+              <br>
+							<div ng-show="downloadLink">
+							    <progress value="{{downloadProgress}}" max="100" ng-show="showProgress"></progress>
 							</div>
 
 						</div>
