@@ -194,6 +194,7 @@ app.controller('PDCMController', function($scope, $http, $timeout, $cordovaFileT
       //alert(JSON.stringify(result));
       }, function(error) {
         // Error
+				alert("Si su version de Android en mayor que 5, Lollipop, por favor vaya a ajustes -> aplicaciones -> PDCM y active el permiso de almacenamiento. Gracias, estamos trabajando para resolver el problema!")
         alert(JSON.stringify(error));
       }, function (progress) {
         $timeout(function () {
