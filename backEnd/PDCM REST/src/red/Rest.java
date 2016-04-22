@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import controlador.Youtubedl;
+import controlador.Youtubedl2;
 import modelo.InfoYoutube;
 import modelo.InfoYoutubeDL;
 
@@ -76,7 +77,43 @@ public class Rest {
 				header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").
 				allow("OPTIONS").build();
 	}
-	
+	//Devuelve la urlSpecial con audio, para videos de youtube, recibe por ejemplo: www.youtube.com/watch?v=6JUbFj0BIc4
+		@GET
+		@Path("/youtubedl2")
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response urlSpecial2(@QueryParam("url")String url){
+			
+			InfoYoutubeDL infoDL = new InfoYoutubeDL();
+			infoDL.setURLSpecial(Youtubedl2.ObtenerURL(url));
+			System.out.println("Parametro recibido:" +url);
+			
+			return Response.ok().
+					entity(infoDL).
+					header("Access-Control-Allow-Origin", "*").
+					header("Access-Control-Allow-Credentials", "true").
+					header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").
+					header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").
+					allow("OPTIONS").build();
+		}
+		
+		//Devuelve lista con diferentes calidades para un video
+				@GET
+				@Path("/getQuality")
+				@Produces(MediaType.APPLICATION_JSON)
+				public Response getQuality(@QueryParam("url")String url){
+					
+					InfoYoutubeDL infoDL = new InfoYoutubeDL();
+					Youtubedl2.ObtenerCalidades(url);
+					System.out.println("Parametro recibido:" +url);
+					
+					return Response.ok().
+							entity(infoDL).
+							header("Access-Control-Allow-Origin", "*").
+							header("Access-Control-Allow-Credentials", "true").
+							header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").
+							header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").
+							allow("OPTIONS").build();
+				}
 
 	/*--------------------Servicos para TEST-----------------------------*/
 	
