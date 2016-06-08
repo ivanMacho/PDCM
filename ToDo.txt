@@ -8,10 +8,10 @@ Busqueda modular en diferentes servicios:
 	Servicios disponibles:
 		-Youtube
 WebApp:
-	Funcion para descarga
-	Funcion de descarga por link
+	Funcion para descarga --- OK
+	Funcion de descarga por link --- OK(cambiar paramatero a recibir; ahora = /watch?v=i6d3yVq1Xtw) 
 Problema con cdns google.
 	Implementar proxy(Squid) en servidor pdcm.es para hacer las descargas del archivo / usar proxy de terecro.
+	---- OK -> Sol. -> usar servidor en area geografica de peticiones.
 
-Problema con metodo de busqueda en Youtube. El lugar donde se indica la duracion de los videos es diferente si se accede a youtube desde España o desde otro pais. 
-Compilar para plataformas moviles con Apache Cordova
+Compilar para plataformas moviles con Apache Cordova --- OK -> Android!
